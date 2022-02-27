@@ -1,0 +1,24 @@
+.grid{
+  display:flex;
+   flex-wrap:wrap;
+   width:400px;
+    height:400px;
+    
+    
+}
+.grid div{
+    width: 100px;
+    height: 100px;
+    background-color:yellowgreen;
+    font-size: 60px;
+    text-align: center;
+    font-weight:bold ;
+    
+    
+}
+.score-container{
+    font-size: 28px;
+    font-weight: bold;
+    padding-top: 50px;
+    
+}
