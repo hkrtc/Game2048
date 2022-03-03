@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         randNumber = Math.floor(Math.random()*squares.length)
         if(squares[randNumber].innerHTML ==0){
             squares[randNumber].innerHTML =2
+            
             checkForGameOver()
             
         }
@@ -55,7 +56,7 @@ document.addEventListener('DOMContentLoaded',() =>{
             }
         }
     }
-    moveRight()
+    //moveRight()
 
     //swipe left
     function moveLeft(){
@@ -69,7 +70,8 @@ document.addEventListener('DOMContentLoaded',() =>{
                 let filteredRow = row.filter(num=>num)
                 let missing = 4-filteredRow.length
                 let zeros = Array(missing).fill(0)
-                let newRow = zeros.concat(filteredRow)
+                //let newRow = zeros.concat(filteredRow) I was wrong here that's why left arrow was not working properly
+                let newRow = filteredRow.concat(zeros)
                 squares[i].innerHTML = newRow[0]
                 squares[i+1].innerHTML = newRow[1]
                 squares[i+2].innerHTML = newRow[2]
@@ -122,7 +124,7 @@ document.addEventListener('DOMContentLoaded',() =>{
     }
     function combineRow(){
         for(let i=0; i<15; i++){
-            if(squares[i].innerHTML===squares[i+1].innerHTML){
+            if(i%4!==3 && squares[i].innerHTML===squares[i+1].innerHTML){
                 let combinedTotal = parseInt(squares[i].innerHTML) + parseInt(squares[i+1].innerHTML)
                 squares[i].innerHTML = combinedTotal
                 squares[i+1].innerHTML = 0
@@ -137,7 +139,7 @@ document.addEventListener('DOMContentLoaded',() =>{
             if(squares[i].innerHTML===squares[i+width].innerHTML){
                 let combinedTotal = parseInt(squares[i].innerHTML) + parseInt(squares[i+width].innerHTML)
                 squares[i].innerHTML = combinedTotal
-                squares[i+1].innerHTML = 0
+                squares[i+width].innerHTML = 0
                 score +=combinedTotal
                 scoreDisplay.innerHTML = score
 
@@ -215,7 +217,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         }
         if(zeros ===0){
             loseSound.play();
-            resulDisplay.innerHTML = "<b>You lose!</b>"
+            resulDisplay.innerHTML = "<b>You lose</b>"
             resulDisplay.style.fontSize = "40px"
             document.removeEventListener('keyup',control)
             
